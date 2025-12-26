@@ -1,37 +1,55 @@
-# Image Creator Agent
+# ADK Starter Agent - Investigator Architecture
 
-This project implements an agent that generates images based on user prompts. It utilizes a root agent that delegates tasks to two sub-agents: a "prompter" and an "imager".
+This project implements an investigator agent architecture designed to coordinate Data Review and Policy Review tasks using the Google ADK.
+
+## Architecture
+
+The system consists of a hierarchical agent structure:
+
+1.  **Root Agent**: Orchestrates requests and delegates to the appropriate Level 1 sub-agent.
+2.  **Level 1 Sub-agents**:
+    - **Data Review Agent**: Specializes in data analysis and weather verification.
+    - **Policy Review Agent**: Specializes in policy compliance and verification.
+3.  **Level 2 Sub-agents** (Each Level 1 agent possesses these):
+    - **SQL Reviewer**: Uses a parameterized SQL tool (`check_weather_event`) to query BigQuery public data (NOAA GSOD) for weather events.
+    - **Search Reviewer**: Uses Google Search to find information not available in the database.
 
 ## Project Structure
 
-- `image_creator_agent/`: Contains the core agent logic.
-  - `agent.py`: Defines the root agent and its sub-agents.
-  - `prompt.py`: Contains the prompt for the root agent.
-  - `subagents/`: Contains the sub-agents.
-    - `prompter/`: The prompter sub-agent, which likely refines or generates prompts.
-    - `imager/`: The imager sub-agent, which likely generates the image.
-- `deployment/`: Contains deployment scripts.
-- `pyproject.toml`: Defines project metadata and dependencies.
+```
+investigator_agent/
+├── agent.py            # Root Agent definition
+├── prompt.py           # Root prompts and testing variables
+├── tools/
+│   └── sql_tool.py     # Parameterized SQL tool for weather checks
+└── subagents/
+    ├── data_review/
+    │   ├── agent.py    # Data Review Agent
+    │   ├── prompt.py
+    │   └── subagents/
+    │       ├── sql_reviewer/    # SQL Reviewer sub-agent
+    │       └── search_reviewer/ # Search Reviewer sub-agent
+    └── policy_review/
+        ├── agent.py    # Policy Review Agent
+        ├── prompt.py
+        └── subagents/
+            ├── sql_reviewer/    # SQL Reviewer sub-agent
+            └── search_reviewer/ # Search Reviewer sub-agent
+```
 
-## How it Works
+## Tools
 
-The root agent receives a user request and uses its sub-agents to fulfill it. The `prompter` agent likely takes the initial user input and transforms it into a more detailed prompt suitable for image generation. The `imager` agent then takes this refined prompt and generates an image.
+- **check_weather_event**: A custom tool that queries BigQuery to verify if a specific weather event (fog, rain, snow, hail, thunder, tornado) occurred in a given US state on a specific date. Includes debug logging to console.
+- **google_search**: Built-in ADK tool for web searching.
 
-## Dependencies
+## Testing
 
-The project uses the following key dependencies:
+The `investigator_agent/prompt.py` file includes auxiliary prompts to assist with focused testing:
 
-- `google-adk`
-- `google-genai`
-- `google-cloud`
-- `pdfplumber`
-- `google-cloud-aiplatform`
-- `reportlab`
-- `google-cloud-storage`
-- `pymupdf`
+- `PROMPT_DATA`: Forces the agent to route all requests to the **Data Review** agent.
+- `PROMPT_POLICY`: Forces the agent to route all requests to the **Policy Review** agent.
 
-## Usage
+## Deployment
 
-To use the agent, you would typically run the main script and provide a prompt for image generation.
-
-_Further details on running the project would need to be added here, such as command-line examples._
+The project includes deployment scripts in the `deployment/` directory.
+Run the deployment script to deploy the agent to Vertex AI Reasoning Engine.
