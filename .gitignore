@@ -11,4 +11,7 @@ wheels/
 .venv
 
 # ADK Specific Artifacts
-.adk/.env
+.adk/
+
+# Notebook files
+.ipynb_checkpoints/

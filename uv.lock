@@ -1881,15 +1881,15 @@ wheels = [
 
 [[package]]
 name = "sse-starlette"
-version = "3.1.0"
+version = "3.1.1"
 source = { registry = "https://us-python.pkg.dev/artifact-foundry-prod/ah-3p-staging-python/simple/" }
 dependencies = [
     { name = "anyio" },
     { name = "starlette" },
 ]
-sdist = { url = "https://us-python.pkg.dev/artifact-foundry-prod/ah-3p-staging-python/sse-starlette/sse_starlette-3.1.0.tar.gz", hash = "sha256:9c2d334a54cf985526a5c639103fe77d3606a3133abb89cd8e7d67cde1038b81" }
+sdist = { url = "https://us-python.pkg.dev/artifact-foundry-prod/ah-3p-staging-python/sse-starlette/sse_starlette-3.1.1.tar.gz", hash = "sha256:bffa531420c1793ab224f63648c059bcadc412bf9fdb1301ac8de1cf9a67b7fb" }
 wheels = [
-    { url = "https://us-python.pkg.dev/artifact-foundry-prod/ah-3p-staging-python/sse-starlette/sse_starlette-3.1.0-py3-none-any.whl", hash = "sha256:63341971e56161ba255d6cda9f9b3414e27cb35d16c897c2000034168c122d48" },
+    { url = "https://us-python.pkg.dev/artifact-foundry-prod/ah-3p-staging-python/sse-starlette/sse_starlette-3.1.1-py3-none-any.whl", hash = "sha256:bb38f71ae74cfd86b529907a9fda5632195dfa6ae120f214ea4c890c7ee9d436" },
 ]
 
 [[package]]

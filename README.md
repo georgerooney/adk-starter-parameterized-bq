@@ -2,6 +2,16 @@
 
 This project implements an investigator agent architecture designed to coordinate Data Review and Policy Review tasks using the Google ADK.
 
+## Prerequisites
+
+Ensure the Vertex AI Agent Engine service account has the necessary permissions to access BigQuery. Run the following command (replacing placeholders with your project details):
+
+```bash
+gcloud projects add-iam-policy-binding <PROJECT_ID> \
+    --member="serviceAccount:service-<PROJECT_NUMBER>@gcp-sa-aiplatform-re.iam.gserviceaccount.com" \
+    --role="roles/bigquery.user"
+```
+
 ## Architecture
 
 The system consists of a hierarchical agent structure:
