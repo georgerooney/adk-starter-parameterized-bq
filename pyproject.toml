@@ -1,0 +1,13 @@
+[project]
+name = "ADK-Starter-Agent"
+version = "0.1.0"
+description = "Quick Two Sub-Agent Architecture with Tools"
+authors = [
+    {name = "George Rooney", email = "georgerooney@google.com"}
+]
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "absl-py>=2.3.1",
+    "google-adk>=1.21.0",
+]
