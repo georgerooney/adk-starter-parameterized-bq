@@ -1,5 +1,5 @@
 [project]
-name = "ADK-Starter-Agent"
+name = "investigator_agent"
 version = "0.1.0"
 description = "Quick Two Sub-Agent Architecture with Tools"
 authors = [
@@ -8,6 +8,15 @@ authors = [
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
-    "absl-py>=2.3.1",
     "google-adk>=1.21.0",
 ]
+
+[project.optional-dependencies]
+deployment = [
+    "absl-py>=2.3.1",
+]
+
+# The build system is updated to use hatchling, a standard build backend.
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

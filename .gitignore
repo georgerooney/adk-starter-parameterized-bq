@@ -11,4 +11,4 @@ wheels/
 .venv
 
 # ADK Specific Artifacts
-.adk/
+.adk/.env
